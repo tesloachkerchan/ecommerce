@@ -1,0 +1,283 @@
+/* Define CSS variables */
+:root {
+  --primary-color: #0082e6;
+}
+
+/* Reset styles */
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* Body styles */
+
+/* Navigation styles */
+nav {
+  background: var(--primary-color);
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+}
+
+/* Logo styles */
+label.logo {
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+
+/* Navigation list styles */
+nav ul {
+  float: right;
+  margin-right: 100px;
+}
+
+/* Navigation list item styles */
+nav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+
+/* Navigation link styles */
+nav ul li a {
+  color: white;
+  font-size: 17px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 7px 13px;
+  border-radius: 3px;
+}
+
+/* Active and hover link styles */
+a.active,
+a:hover {
+  background: #1b9bff;
+  transition: .5s;
+}
+
+/* Check button styles */
+.checkbtn {
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+
+/* Checkbox styles */
+#check {
+  display: none;
+}
+
+/* Media queries for smaller screens */
+@media screen and (max-width: 952px) {
+  label.logo {
+    font-size: 30px;
+    padding-left: 50px;
+  }
+
+  nav ul li a {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 874px) {
+  .checkbtn {
+    display: block;
+  }
+
+  nav ul {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all 0.5s;
+  }
+
+  nav ul li {
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+
+  nav ul li a {
+    font-size: 20px;
+  }
+
+  a.active,
+  a:hover {
+    background: none;
+    color: var(--primary-color);
+  }
+
+  #check:checked~ul {
+    left: 0;
+  }
+}
+
+.home {
+  max-height: fit-content;
+  padding-top: 75px;
+}
+
+/* Footer styles */
+footer {
+  background-color: #f2f2f2;
+  padding: 50px 0;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex-basis: 25%;
+  padding: 0 20px;
+}
+
+.footer-column h3 {
+  color: var(--primary-color);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.footer-column p {
+  line-height: 1.5;
+}
+
+.footer-column ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li i {
+  margin-right: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+}
+
+footer hr {
+  border-top: 1px solid var(--primary-color);
+}
+
+.bottom-bar {
+  color: #333;
+  text-align: center;
+  padding: 10px;
+}
+
+@media (max-width: 767px) {
+
+  /* Footer styles */
+  footer {
+    background-color: #f2f2f2;
+    padding: 50px 0;
+    position: relative;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .footer-column {
+    flex-basis: 100%;
+    padding: 0 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-column h3 {
+    color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .footer-column p {
+    line-height: 1.5;
+  }
+
+  .footer-column ul {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-column ul li i {
+    margin-right: 10px;
+  }
+
+  .social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    background-color: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+  }
+
+  footer hr {
+    border-top: 1px solid var(--primary-color);
+  }
+
+  .bottom-bar {
+    color: #333;
+    text-align: center;
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer-column {
+    display: block;
+    align-items: center;
+  }
+
+  label.logo {
+    font-size: 20px;
+    padding-left: 25px;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}

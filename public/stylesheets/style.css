@@ -1,8 +1,14 @@
 /* Define CSS variables */
 :root {
-  --primary-color: #0082e6;
+  --primary-color: #171427;
+  --main-color: #fd4646;
+    --sec-color: #4946fd;
+    --text-color: #171427;
+    --bg-color: #fff;
 }
-
+a,h6{
+  color: var(--text-color);
+}
 /* Reset styles */
 * {
   padding: 0;
@@ -58,7 +64,6 @@ nav ul li a {
 /* Active and hover link styles */
 a.active,
 a:hover {
-  background: #1b9bff;
   transition: .5s;
 }
 
@@ -130,6 +135,17 @@ a:hover {
 .home {
   max-height: fit-content;
   padding-top: 75px;
+}
+.cat-item{
+   margin-left: 100px;
+   width: 50%;
+}
+.cat-item:hover{
+   
+      padding: 10px;
+      border: 1px solid var(--text-color);
+      transition: .4s;
+      
 }
 
 /* Footer styles */

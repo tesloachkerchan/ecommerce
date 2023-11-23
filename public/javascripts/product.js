@@ -21,6 +21,7 @@ if (document.readyState == "loading") {
 // =============== START ====================
 function start() {
   addEvents();
+  renderPayPalButton()
 }
 
 // ============= UPDATE & RERENDER ===========
@@ -101,49 +102,43 @@ function handle_removeCartItem() {
   update();
 }
 
-function handle_changeItemQuantity() {
-  if (isNaN(this.value) || this.value < 1) {
-    this.value = 1;
-  }
-  this.value = Math.floor(this.value); // to keep it integer
-
-  update();
-}
-
 function handle_buyOrder() {
   if (itemsAdded.length <= 0) {
     alert("There is No Order to Place Yet! \nPlease Make an Order first.");
     return;
   }
 
-  // Create PayPal order
-  fetch("/create-order", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      items: itemsAdded.map((item) => {
-        return {
-          name: item.title,
-          price: item.price,
-          quantity: 1, // Assuming quantity is always 1 for each item
-        };
-      }),
-    }),
-  })
-    .then((res) => {
-      if (res.ok) return res.json();
-      return res.json().then((json) => Promise.reject(json));
-    })
-    .then(({ id }) => {
-      // Redirect to PayPal checkout page
-      window.location.href = `https://www.paypal.com/checkoutnow?token=${id}`;
-    })
-    .catch((e) => {
-      console.error(e.error);
-    });
+  // Get the quantity input element
+  let quantityInput = document.querySelector(".cart-quantity");
+
+  // Get the value of the quantity input
+  let quantity = parseInt(quantityInput.value);
+
+  if (isNaN(quantity) || quantity < 1) {
+    alert("Invalid quantity!");
+    return;
+  }
+
+  const items = itemsAdded.map((item) => {
+    return {
+      name: item.title,
+      price: item.price,
+      quantity: quantity,
+    };
+  });
+
+  console.log(items);
+  exportToPayment(items);
 }
+function exportToPayment(items) {
+  // Send the items array to the payment.js file or perform any other necessary action
+  // Example: You can store the items in localStorage to access them in another JavaScript file
+  localStorage.setItem("items", JSON.stringify(items));
+
+  // Redirect to the payment page or perform any other necessary action
+  window.location.href = "http://localhost:5000/payment";
+}
+
 
   // =========== UPDATE & RERENDER FUNCTIONS =========
   function updateTotal() {
@@ -153,7 +148,10 @@ function handle_buyOrder() {
     cartBoxes.forEach((cartBox) => {
       let priceElement = cartBox.querySelector(".cart-price");
       let price = parseFloat(priceElement.innerHTML.replace("$", ""));
-      let quantity = cartBox.querySelector(".cart-quantity").value;
+       let quantityInput = document.querySelector(".cart-quantity");
+
+  // Get the value of the quantity input
+  let quantity = parseInt(quantityInput.value);
       total += price * quantity;
     });
 
@@ -173,7 +171,7 @@ function handle_buyOrder() {
         <div class="detail-box">
             <div class="cart-product-title">${title}</div>
             <div class="cart-price">${price}</div>
-            <input type="number" value="" class="cart-quantity">
+            <input type="number" value="1" class="cart-quantity">
         </div>
         <!-- REMOVE CART  -->
         <i class='bx bxs-trash-alt cart-remove'></i>

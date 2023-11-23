@@ -22,7 +22,8 @@
             </label>
             <label class="logo">Ecommerce</label>
             <ul>
-                <li><a href="#">cart<i class='bx bx-shopping-bag' id="cart-icon"></i></a></li>
+                <li><a href="/"><i class='bx bx-home' id="home-icon"></i></a></li>
+                <li><a href="#"><i class='bx bx-shopping-bag' id="cart-icon"></i></a></li>
                 
             </ul>
             <!-- CART  -->
@@ -59,6 +60,11 @@
             
                 <!-- CONTENT -->
                 <div class="shop-content">
+                    <% if (typeof error !=='undefined' && error !==null) { %>
+                        <div style="text-align: center;margin-top: 20px;" class="error-message">
+                           <h1><%= error %></h1> 
+                        </div>
+                        <% } %>
                     <% products.forEach((product)=> { %>
                         <div class="product-box">
                             <img src="<%= product.img %>" alt="" class="product-img">
@@ -123,6 +129,7 @@
                     </div>
                 </div>
                 <hr>
+                
                 <div class="bottom-bar">
                     <p>&copy; 2023 - All rights reserved</p>
                 </div>

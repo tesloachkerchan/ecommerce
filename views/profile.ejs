@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        .profile div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid black;
+            padding: 20px;
+            width: 50%;
+            background-color: #fff;
+        }
+
+        .profile div img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .profile div h2 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        .profile div p {
+            margin-bottom: 5px;
+            font-size: 14px;
+            padding: 10px 10px;
+        }
+
+        .profile div hr {
+            border: none;
+            height: 1px;
+            background-color: black;
+            width: 50%;
+            margin: 10px auto;
+        }
+
+        .profile a {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .profile div button {
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin-top: 5px;
+        }
+
+       
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="file"],
+        form button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        form button {
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Ecommerce</label>
+    </nav>
+    <section class="profile">
+        <div>
+            <img src=<%= user.photo.replace(/\\/g, '/') %> alt="Profile Picture" id="profile-picture">
+
+            <h2>Profile</h2>
+            <button id="update-profile-button">Update Profile</button>
+            <hr>
+            <p>Name: <%= user.name %>
+            </p>
+            <p>Email: <%= user.email %>
+            </p>
+            <p>Role: <%= user.role %>
+            </p>
+            <p>Phone Number: <%= user.phone %>
+            </p>
+        </div>
+        <form id="update-profile-form" action="/update-profile" method="POST" enctype="multipart/form-data"
+            style="display: none;">
+            <!--<input type="file" name="photo" accept="image/png, image/jpeg">-->
+            <input type="text" name="name" placeholder="Name" value="<%= user.name %>">
+            <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
+            <input type="text" name="phone" placeholder="Phone Number" value="<%= user.phone %>">
+            <button type="submit">Save Changes</button>
+        </form>
+        <a href="/">Go Back to Home</a>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column col-12 col-md-4">
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada faucibus ex, sit amet blandit
+                    velit tincidunt id.</p>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a style="color: black;" href="#">Electronics</a></li>
+                    <li><a style="color: black;" href="#">Clothing</a></li>
+                    <li><a style="color: black;" href="#">Home &amp; Kitchen</a></li>
+                    <li><a style="color: black;" href="#">Books</a></li>
+                </ul>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a style="color: black;" href="#">Contact Us</a></li>
+                    <li><a style="color: black;" href="#">FAQ</a></li>
+                    <li><a style="color: black;" href="#">Shipping Information</a></li>
+                    <li><a style="color: black;" href="#">Returns &amp; Exchanges</a></li>
+                </ul>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="bottom-bar">
+            <p>&copy; 2023 - All rights reserved</p>
+        </div>
+    </footer>
+   <script>
+    document.getElementById("update-profile-button").addEventListener("click", function () {
+            document.getElementById("update-profile-form").style.display = "";
+            document.getElementById("profile-picture").style.display = "none";
+        });
+
+        document.getElementById("update-profile-form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const form = document.getElementById("update-profile-form");
+            const formData = new FormData(form);
+
+            fetch("/update-profile", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle response data
+                    console.log(data);
+                   document.getElementById("profile-picture").src = "/uploads/" + user.photo.replace(/\\/g, '/');
+                    document.getElementById("profile-picture").style.display = "block";
+                    document.getElementById("update-profile-form").style.display = "none";
+                })
+                .catch(error => {
+                    // Handle error
+                    console.error(error);
+                });
+        });
+</script>
+
+</body>
+
+</html>

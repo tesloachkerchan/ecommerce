@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-  /*user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+   user: {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    name: {
+      type: String,
+      required: true
+    }
   },
-  */
   products: [
     {
       name: {
@@ -34,7 +39,16 @@ const orderSchema = new mongoose.Schema({
   paymentDate: {
     type: Date,
     required: true
-  }
+  },
+   status: {
+    type: String,
+    enum: ['pending', 'approved'],
+    default: 'pending',
+  },
+  paypalOrderId: {
+    type: String,
+    defualt: 'null'
+   }
 });
 
 const Order = mongoose.model('Order', orderSchema);

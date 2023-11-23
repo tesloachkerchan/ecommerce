@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
 
     res.render('products', { products, totalPages, currentPage: page });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.render('products', { error: 'Failed to fetch products', products: [], totalPages: 0, currentPage: 1 });
   }
 });
 // Create new products

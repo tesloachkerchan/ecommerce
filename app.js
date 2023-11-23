@@ -3,7 +3,6 @@ const express = require('express');
 const session = require('express-session');
 require("dotenv").config()
 const mongoose = require('mongoose');
-const dotenv = require('dotenv').config();
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
@@ -15,6 +14,8 @@ const authRoute = require('./routes/auth');
 const loginRoute = require('./routes/login');
 const orderRoute = require('./routes/order')
 const logoutRoute = require('./routes/logout')
+const thankRoute = require('./routes/thank')
+const profileRoute = require('./routes/profile')
 
 const app = express();
 
@@ -28,6 +29,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Configure session middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(session({
   secret: 'your-secret-key',
   resave: false,
@@ -41,7 +44,12 @@ app.use('/products', productRoute);
 app.use('/register', authRoute);
 app.use('/login', loginRoute)
 app.use('/create-order', orderRoute);
-app.use('/logout',logoutRoute)
+app.use('/capture-payment',orderRoute)
+app.use('/logout', logoutRoute)
+app.use('/payment', orderRoute)
+app.use('/thank', thankRoute)
+app.use('/profile', profileRoute)
+app.use('/update-profile',profileRoute)
 
 // Port
 const PORT = process.env.PORT || 5000;

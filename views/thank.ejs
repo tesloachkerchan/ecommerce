@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ecommerce</title>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Add CSS styles here */
+        section {
+            margin-top: 30px;
+        }
+
+        .thank {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .thank div {
+            border: 1px solid black;
+            padding: 20px;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .thank div h3,
+        .thank div h6,
+        .thank div p {
+            border-bottom: 1px solid black;
+        }
+
+        .thank a {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <input type="checkbox" id="check">
+        <label for="check" class="checkbtn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">Ecommerce</label>
+        </div>
+    </nav>
+    <section class="thank">
+        <div>
+            <h3>Thank you for your order!</h3>
+            <h6>Your order details</h6>
+            <p>Name: <%= user.name %>
+            </p>
+            <p>Order ID: <%= orderId %>
+            </p>
+            <p>Total: <%= total %>
+            </p>
+        </div>
+        <a href="/">Go Back to Home</a>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column col-12 col-md-4">
+                <h3>About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada faucibus ex, sit amet blandit
+                    velit tincidunt id.</p>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a style="color: black;" href="#">Electronics</a></li>
+                    <li><a style="color: black;" href="#">Clothing</a></li>
+                    <li><a style="color: black;" href="#">Home &amp; Kitchen</a></li>
+                    <li><a style="color: black;" href="#">Books</a></li>
+                </ul>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a style="color: black;" href="#">Contact Us</a></li>
+                    <li><a style="color: black;" href="#">FAQ</a></li>
+                    <li><a style="color: black;" href="#">Shipping Information</a></li>
+                    <li><a style="color: black;" href="#">Returns &amp; Exchanges</a></li>
+                </ul>
+            </div>
+            <div class="footer-column col-12 col-md-4">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="bottom-bar">
+            <p>&copy; 2023 - All rights reserved</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

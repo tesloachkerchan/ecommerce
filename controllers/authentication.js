@@ -24,7 +24,6 @@ const login = async (req, res) => {
   } else {
     res.render('login', {
       message: authenticated.message,
-      messageType: 'danger'
     });
   }
 };

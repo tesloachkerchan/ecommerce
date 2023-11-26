@@ -13,10 +13,9 @@ const registration = async (req, res) => {
   const user = new userModel({ name, email, password });
   try {
     await user.save();
-    res.redirect('/login'); // Redirect to login page
+    res.render('register', { message: 'registered now you can login' }); // Redirect to login page
 
     // If you still want to show a success message, you can flash it to be displayed on the login page
-    req.flash('success', 'User registered successfully');
   } catch (err) {
     console.error(err);
     res.render('register', { message: 'Error registering user', messageType: 'danger' });

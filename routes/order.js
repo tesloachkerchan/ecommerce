@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
   const user = req.session.user || null;
    if (!user) {
     // Redirect the user to the home page or login page
-    return res.redirect('/'); // Replace '/' with the appropriate URL
+    return res.redirect('/login?message=login again your session timeout'); // Replace '/' with the appropriate URL
   }
 
   const paypalClientId = process.env.PAYPAL_CLIENT_ID; // Get the PayPal client ID

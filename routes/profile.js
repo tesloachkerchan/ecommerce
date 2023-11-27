@@ -1,15 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const path = require('path');
 const User = require('../models/userModel');
 
 // Set up multer storage for handling file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads');
+    cb(null, './public/images');
   },
   filename: function (req, file, cb) {
-    cb(null, file.originalname);
+    const fileName = Date.now() + path.extname(file.originalname);
+    cb(null, fileName);
   }
 });
 
@@ -29,7 +31,7 @@ router.post('/', upload.single('photo'), function (req, res, next) {
   const userId = req.session.user._id;
 
   // Handle profile picture update
-  let photo = req.file ? req.file.path : null;
+  let photo = req.file ? '/images/' + req.file.filename : null;
   if (!photo) {
     photo = req.session.user.photo;
   }

@@ -136,7 +136,7 @@
         </div>
         <form id="update-profile-form" action="/update-profile" method="POST" enctype="multipart/form-data"
             style="display: none;">
-            <!--<input type="file" name="photo" accept="image/png, image/jpeg">-->
+            <input type="file" name="photo" accept="image/png, image/jpeg">
             <input type="text" name="name" placeholder="Name" value="<%= user.name %>">
             <input type="email" name="email" placeholder="Email" value="<%= user.email %>">
             <input type="text" name="phone" placeholder="Phone Number" value="<%= user.phone %>">

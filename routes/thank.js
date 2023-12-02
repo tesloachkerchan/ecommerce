@@ -19,11 +19,8 @@ paymentDate:-1});
       return res.status(404).json({ error: 'Order not found' });
     }
 
-    // Retrieve the order ID, total, and any other relevant data from the order object
-    const orderId = order.paypalOrderId;
-    const total = order.total;
 
-    res.render('thank', { user: user, orderId: orderId, total: total });
+    res.render('thank', {order });
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: 'Failed to fetch the order' });

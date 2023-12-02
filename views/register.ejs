@@ -69,11 +69,12 @@
             padding: 20px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
     <div class="container">
-        <h2>Register</h2>
+        <h2> <i class="fa-solid fa-plus"></i> Register</h2>
         <% if (message) { %>
             <div class="response" role="alert">
                 <%= message %>
@@ -96,7 +97,7 @@
                         <button type="submit">Register</button>
                     </div>
                     <div class="login">
-                        <a href="/login">have an account login</a>
+                      <p> have an account <a href="/login">login</a></p>
                     </div>
                 </form>
     </div>

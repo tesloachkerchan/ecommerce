@@ -17,7 +17,7 @@ const login = async (req, res) => {
   if (authenticated.success) {
     req.session.user = authenticated.user; // Store the authenticated user in the session
     if (authenticated.user.role === 'admin') {
-      res.redirect('/products');
+      res.redirect('http://localhost:4000');
     } else {
       res.redirect('/');
     }

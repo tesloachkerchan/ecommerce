@@ -63,8 +63,6 @@ for (const item of items) {
 
     // Save the order to the database
     const savedOrder = await order.save();
-    console.log(savedOrder);
-console.log("req body"+req.body); // Debug statement
 
     // Create PayPal order
     const request = new paypal.orders.OrdersCreateRequest();

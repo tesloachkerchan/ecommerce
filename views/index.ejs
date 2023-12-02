@@ -17,6 +17,9 @@
               <% } %>
         </li>
         <% if (user) { %>
+          <li><a href="/myorder">
+              my order
+            </a></li>
           <li><a href="/profile">
               <%= user.name %>
             </a></li>
@@ -102,6 +105,27 @@
       </div>
     </div>
     <!-- Featured End -->
+    <section class="home shop container">
+      <div class="product-head">
+        <h2 class="section-title">Recent Products</h2>
+      </div>
+    
+      <!-- CONTENT -->
+      <div class="shop-content">
+            <% products.forEach((product)=> { %>
+              <div class="product-box">
+                <img src="<%= product.img %>" alt="" class="product-img">
+                <h2 class="product-title">
+                  <%= product.name %>
+                </h2>
+                $<span class="product-price">
+                  <%= product.price %>
+                </span>
+              </div>
+              <% }) %>
+      </div>
+      </div>
+    </section>
     <!-- Categories Start -->
     <div class="container-fluid pt-5 mb-3 align-items-center justify-content-center">
       <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span

@@ -16,6 +16,7 @@ const orderRoute = require('./routes/order')
 const logoutRoute = require('./routes/logout')
 const thankRoute = require('./routes/thank')
 const profileRoute = require('./routes/profile')
+const myOrderRoute= require('./routes/myorder')
 
 const app = express();
 
@@ -49,7 +50,8 @@ app.use('/logout', logoutRoute)
 app.use('/payment', orderRoute)
 app.use('/thank', thankRoute)
 app.use('/profile', profileRoute)
-app.use('/update-profile',profileRoute)
+app.use('/update-profile', profileRoute)
+app.use('/myorder',myOrderRoute)
 
 // Port
 const PORT = process.env.PORT || 5000;

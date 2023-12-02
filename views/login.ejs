@@ -22,6 +22,7 @@
             text-align: center;
             margin-bottom: 20px;
         }
+        
 
         .form-group {
             margin-bottom: 20px;
@@ -67,11 +68,12 @@
             padding: 20px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
 <body>
     <div class="container">
-        <h2>Login</h2>
+        <h2> <i class="fa-solid fa-right-to-bracket"></i> Login</h2>
         <% if (message) { %>
             <div class="response" role="alert">
                 <%= message %>
@@ -90,7 +92,7 @@
                 <button type="submit">Log In</button>
             </div>
             <div class="register">
-                <a href="/register">don't have account register now</a>
+                <p>don't have account <a href="/register"> register now</a></p>
             </div>
         </form>
     </div>

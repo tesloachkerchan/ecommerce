@@ -1,21 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
-const path = require('path');
-const User = require('../models/userModel');
+const axios = require('axios');
+const fs = require('fs');
+const path = require('path')
+const User = require('../models/userModel')
 
-// Set up multer storage for handling file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images');
-  },
-  filename: function (req, file, cb) {
-    const fileName = Date.now() + path.extname(file.originalname);
-    cb(null, fileName);
-  }
-});
-
-const upload = multer({ storage: storage });
+const upload = multer({ dest: 'uploads/' });
 
 /* GET profile page. */
 router.get('/', function (req, res, next) {
@@ -26,36 +17,42 @@ router.get('/', function (req, res, next) {
   res.render('profile', { user: user });
 });
 
-/* POST update profile */
-router.post('/', upload.single('photo'), function (req, res, next) {
-  const userId = req.session.user._id;
+router.post('/', upload.single('photo'), async function (req, res, next) {
+  try {
+    const file = req.file;
+    const userId = req.session.user._id;
 
-  // Handle profile picture update
-  let photo = req.file ? '/images/' + req.file.filename : null;
-  if (!photo) {
-    photo = req.session.user.photo;
-  }
+    const fileData = fs.readFileSync(file.path);
+    const base64Data = fileData.toString('base64');
 
-  // Update user information
+    const formData = new FormData();
+    formData.append('image', base64Data);
+
+    const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
+      params: {
+        key: 'd77c3fc1d92cc43ebbbce7d6c753e766',
+      },
+    });
+
+    const imageUrl = response.data.data.url;
+
+     // Update user information
   User.findByIdAndUpdate(
     userId,
     {
       name: req.body.name,
       email: req.body.email,
       phone: req.body.phone,
-      photo: photo
+      photo: imageUrl
     },
     { new: true }
-  )
-    .then(updatedUser => {
-      res.json({ user: updatedUser });
-    })
-    .catch(error => {
-      console.error(error);
-      res
-        .status(500)
-        .json({ error: 'An error occurred while updating the profile.' });
-    });
+  ).then(() => {
+    res.redirect('profile')
+  })
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 module.exports = router;

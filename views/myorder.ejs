@@ -13,47 +13,62 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Add CSS styles here */
-        section {
-            margin-top: 30px;
+        .order{
+            margin: 50px;
         }
-
-        .thank {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+        .order h1{
             text-align: center;
         }
-        .thank div {
-            border: 1px solid black;
-            padding: 20px;
-            margin-bottom: 20px;
-            margin-top: 20px;
-        }
-
         
-        /* CSS styles for formatting */
-        .order-detail {
-            margin: 20px;
-        }
-    
-        .order-detail h2 {
-            margin-bottom: 10px;
-        }
-    
-        .order-detail p {
-            margin-bottom: 5px;
-        }
+    table {
+        margin-top: 30px;
+        width: 100%;
+        border-collapse: collapse;
+        
+    }
 
-        .thank a {
-            background-color: black;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            margin-top: 20px;
-            text-decoration: none;
-        }
+    th, td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #171427;
+        color: white;
+    }
+
+    tr:nth-child(odd) {
+        background-color: white;
+        color: #171427;
+    }
+
+    tr:nth-child(even) {
+        background-color: #171427;
+        color: white;
+    }
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    
+}
+
+.pagination a {
+    padding: 8px 10px;
+    color: white;
+    text-decoration: none;
+    margin: 0 5px;
+    background-color: #171427;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #333;
+}
+
+.pagination .active {
+    color: white;
+}
     </style>
 </head>
 
@@ -65,48 +80,54 @@
         </label>
         <label class="logo">Ecommerce</label>
         </div>
+        <ul>
+            <li><a href="/">Home</a></li>
+        </ul>
     </nav>
-    <section class="thank">
-        <div class="order-detail">
-            <h2>Order Details</h2>
-            <p><strong>Order ID:</strong>
-                <%= order._id %>
-            </p>
-            <p><strong>User:</strong>
-                <%= order.user %>
-            </p>
-            <p><strong>Total:</strong>
-                <%= order.total %>
-            </p>
-            <p><strong>Payment Method:</strong>
-                <%= order.paymentMethod %>
-            </p>
-            <p><strong>Payment Date:</strong>
-                <%= order.paymentDate %>
-            </p>
-            <p><strong>Status:</strong>
-                <%= order.status %>
-            </p>
+    <section class="order">
+        <h1>My Order</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Order Date</th>
+                    <th>total price</th>
+                    <th>Status</th>
+                    <th>Order Detial</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(function(order) { %>
+                    <tr>
+                        <td>
+                            <%= order.user.name %>
+                        </td>
+                        <td>
+                            <%= order.paymentDate.toLocaleDateString() %>
+                        </td>
+                        <td>
+                            <%= order.total %>
+                        </td>
+                        <td>
+                            <%= order.status %>
+                        </td>
+                        <td>
+                            <%=order.paypalOrderId %>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
         
-            <h3>Products:</h3>
-            <% order.products.forEach(function(product) { %>
-                <div class="product">
-                    <h3>
-                        <%= product.name %>
-                    </h3>
-                    <p><strong>Price:</strong>
-                        <%= product.price %>
-                    </p>
-                    <p><strong>Quantity:</strong>
-                        <%= product.quantity %>
-                    </p>
-                    <p><strong>Product ID:</strong>
-                        <%= product._id %>
-                    </p>
-                </div>
-                <% }); %>
+        <div class="pagination">
+            <% if (currentPage> 1) { %>
+                <a href="/myorder?page=<%= currentPage - 1 %>" class="prev">Prev</a>
+                <% } %>
+        
+                    <% if (currentPage < totalPages) { %>
+                        <a href="/myorder?page=<%= currentPage + 1 %>" class="next">Next</a>
+                        <% } %>
         </div>
-        <a href="/">Go Back to Home</a>
     </section>
 
     <footer>

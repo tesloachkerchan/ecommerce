@@ -9,6 +9,13 @@
       </label>
       <label class="logo">Ecommerce</label>
       <ul>
+        <% if (user) { %>
+          <% if (user.role==='admin' ) { %>
+            <li><a href="http://localhost:4000">
+                admin
+              </a></li>
+            <% } %>
+          <% } %>
         <li>
           <% if (user) { %>
             <a href="/products">Shop</a>
@@ -16,6 +23,7 @@
               <a href="#" onclick="alert('Please login first');">Shop</a>
               <% } %>
         </li>
+        
         <% if (user) { %>
           <li><a href="/myorder">
               my order
@@ -118,9 +126,6 @@
                 <h2 class="product-title">
                   <%= product.name %>
                 </h2>
-                $<span class="product-price">
-                  <%= product.price %>
-                </span>
               </div>
               <% }) %>
       </div>

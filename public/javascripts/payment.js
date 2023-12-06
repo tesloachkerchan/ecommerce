@@ -28,7 +28,7 @@ paypal.Buttons({
     onApprove: function (data, actions) {
        return actions.order.capture().then(function(details) {
       // Redirect to http://localhost:5000/index
-      window.location.href = "http://localhost:5000/thank";
+      window.location.href = "https://ecommerce-manker.onrender.com/thank";
     });
   },
   })

@@ -136,7 +136,7 @@ function exportToPayment(items) {
   localStorage.setItem("items", JSON.stringify(items));
 
   // Redirect to the payment page or perform any other necessary action
-  window.location.href = "https://ecommerce-manker.onrender.com//payment";
+  window.location.href = "https://ecommerce-manker.onrender.com/payment";
 }
 
 

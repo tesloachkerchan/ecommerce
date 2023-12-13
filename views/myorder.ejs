@@ -69,6 +69,30 @@
 .pagination .active {
     color: white;
 }
+@media only screen and (max-width: 576px){
+    .order{
+        margin: 100px 30px;
+    }
+    table{
+        width: 50%;
+    }
+}
+@media only screen and (max-width: 360px){
+    .order{
+        margin: 100px 10px;
+    }
+    table{
+        margin-right: 400px;
+    }
+}
+@media only screen and (max-width: 400px){
+    .order{
+        margin: 100px 20px;
+    }
+    table{
+        margin-right: 400px;
+    }
+}
     </style>
 </head>
 
@@ -93,7 +117,6 @@
                     <th>Order Date</th>
                     <th>total price</th>
                     <th>Status</th>
-                    <th>Order Detial</th>
                 </tr>
             </thead>
             <tbody>
@@ -111,9 +134,7 @@
                         <td>
                             <%= order.status %>
                         </td>
-                        <td>
-                            <%=order.paypalOrderId %>
-                        </td>
+                        
                     </tr>
                     <% }); %>
             </tbody>

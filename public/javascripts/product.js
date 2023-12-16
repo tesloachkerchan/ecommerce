@@ -156,7 +156,7 @@ function exportToPayment(items) {
     });
 
     // keep 2 digits after the decimal point
-    total = total.toFixed(2);
+    total = total.toFixed();
     // or you can use also
     // total = Math.round(total * 100) / 100;
 

@@ -30,7 +30,7 @@ router.post('/', upload.single('photo'), async function (req, res, next) {
 
     const response = await axios.post('https://api.imgbb.com/1/upload', formData, {
       params: {
-        key: 'd77c3fc1d92cc43ebbbce7d6c753e766',
+        key: 'dd0d75996ab0e89858bbe6e49f3d3f4b',
       },
     });
 
